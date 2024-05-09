@@ -10,9 +10,14 @@ export default {
         oswald:['Oswald', 'sans-serif'],
       }
     },
+    
   },
   plugins: [
     require('daisyui'),
   ],
+  daisyui: {
+    themes: [
+      "sunset","autumn"]
+  }
 }
 

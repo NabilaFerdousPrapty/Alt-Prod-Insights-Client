@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useEffect, useState } from "react";
 import logo from '../../../assets/AltProdInsightsLogo.png'
 import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
@@ -7,10 +7,30 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  const [theme, setTheme] = useState(() => {
+    // Load theme from local storage or set default theme
+    return localStorage.getItem("theme") || "sunset";
+  });
+
+  const toggleTheme = (e) => {
+    if (e.target.checked) {
+      setTheme("autumn");
+
+    } else {
+      setTheme("sunset");
+    }
+  };
+  useEffect(()=>{
+    localStorage.setItem("theme",theme);
+    const currentTheme =localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme",currentTheme);
+  
+  },[theme])
 
   return (
     <div>
-      <nav className="relative bg-white mt-3 mx-1 shadow dark:bg-gray-800 rounded-2xl">
+     <nav className={`relative ${theme === "sunset" ? "bg-white text-purple-700" : "bg-purple-200 text-blue-600"}  mt-3 mx-1 shadow  lg:rounded-full rounded-xl`}>
+
         <div className="container px-6 py-4 mx-auto">
           <div className="lg:flex lg:items-center lg:justify-between">
             <div className="flex items-center justify-between">
@@ -23,7 +43,7 @@ const Navbar = () => {
                 <button
                   onClick={toggleMenu}
                   type="button"
-                  className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
+                  className=" focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
                   aria-label="toggle menu"
                 >
                   {!isOpen ? (
@@ -70,25 +90,25 @@ const Navbar = () => {
               <div className="flex flex-col lg:flex-row lg:items-center lg:mx-8">
                 <NavLink
                   to={'/'}
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
                 >
                   Home
                 </NavLink>
                 <NavLink
-                  to={'/Queries'}
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  to={'/queries'}
+                  className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
                 >
                   Queries
                 </NavLink>
                 <a
                   href="#"
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
                 >
                   Random Item
                 </a>
                 <a
                   href="#"
-                  className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                  className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
                 >
                   Experts
                 </a>
@@ -112,8 +132,9 @@ const Navbar = () => {
                       <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
                     </svg>
                     <input
+                    onClick={toggleTheme}
                       type="checkbox"
-                      value="synthwave"
+                      value="autumn"
                       className="toggle theme-controller"
                     />
                     <svg
@@ -145,7 +166,7 @@ const Navbar = () => {
                     />
                   </div>
 
-                  <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">
+                  <h3 className="mx-2  lg:hidden">
                     Khatab wedaa
                   </h3>
                 </button>
