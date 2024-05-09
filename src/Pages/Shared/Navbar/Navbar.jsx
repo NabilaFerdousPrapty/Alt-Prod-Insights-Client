@@ -8,7 +8,7 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
   const [theme, setTheme] = useState(() => {
-    // Load theme from local storage or set default theme
+    
     return localStorage.getItem("theme") || "sunset";
   });
 
@@ -29,7 +29,7 @@ const Navbar = () => {
 
   return (
     <div>
-     <nav className={`relative ${theme === "sunset" ? "bg-white text-purple-700" : "bg-purple-200 text-blue-600"}  mt-3 mx-1 shadow  lg:rounded-full rounded-xl`}>
+     <nav className={`relative ${theme === "sunset" ? "bg-zinc-500 text-purple-700" : "bg-purple-300 text-blue-800"}  mt-3 mx-1 shadow  lg:rounded-full rounded-xl`}>
 
         <div className="container px-6 py-4 mx-auto">
           <div className="lg:flex lg:items-center lg:justify-between">
@@ -152,8 +152,8 @@ const Navbar = () => {
                     </svg>
                   </label>
                 </div>
-
-                <button
+                 <Link to={'/login'} className="btn rounded-2xl">Login</Link>
+                {/* <button
                   type="button"
                   className="flex items-center focus:outline-none"
                   aria-label="toggle profile dropdown"
@@ -169,7 +169,7 @@ const Navbar = () => {
                   <h3 className="mx-2  lg:hidden">
                     Khatab wedaa
                   </h3>
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
