@@ -10,7 +10,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="relative bg-white shadow dark:bg-gray-800 rounded-2xl">
+      <nav className="relative bg-white mt-3 mx-1 shadow dark:bg-gray-800 rounded-2xl">
         <div className="container px-6 py-4 mx-auto">
           <div className="lg:flex lg:items-center lg:justify-between">
             <div className="flex items-center justify-between">
