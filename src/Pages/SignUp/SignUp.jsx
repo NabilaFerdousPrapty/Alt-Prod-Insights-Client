@@ -8,13 +8,13 @@ const SignUp = () => {
     const navigate=useNavigate();
     const handleSignUp= async(e)=>{
         e.preventDefault();
-        const form=new FormData(e.currentTarget);
-        const userName=form.get('userName');
-        const photoUrl=form.get('photoUrl');
-        const email=form.get('email');
-        const phone=form.get('phone');
-        const password=form.get('password');
-        const confirmPassword=form.get('confirmPassword');
+    const form = new FormData(e.currentTarget);
+    const userName = form.get('userName');
+    const photoUrl = form.get('photoUrl'); 
+    const email = form.get('email');
+    const phone = form.get('phone');
+    const password = form.get('password');
+    const confirmPassword = form.get('confirmPassword');
         // const user={userName,photoUrl,email,phone,password,confirmPassword};
         // console.log(user);
         if (password !== confirmPassword) {
@@ -26,7 +26,8 @@ const SignUp = () => {
             const result=await createUser(email,password);
             console.log(result);
             await updateUserProfile(userName,photoUrl);
-            setUser({...user,photoUrl:photoUrl,displayName:userName});
+            setUser({...user,photoURL:photoUrl,displayName:userName,phoneNumber:phone});
+            console.log(user);
             navigate('/');
             toast.success('Account created successfully');
         }catch(error){

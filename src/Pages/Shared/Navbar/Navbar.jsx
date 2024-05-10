@@ -3,6 +3,8 @@ import logo from "../../../assets/AltProdInsightsLogo.png";
 import { Link, NavLink } from "react-router-dom";
 import UseAuth from './../../../hooks/UseAuth/UseAuth';
 import userImg from "../../../assets/user.png";
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css'
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = UseAuth();
@@ -11,7 +13,8 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  
+
+ 
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "sunset";
   });
@@ -31,12 +34,16 @@ const Navbar = () => {
 
   return (
     <div>
+       <Tooltip anchorSelect=".my-anchor-element"   type="success" style={{zIndex:1000}} >
+  {user?.displayName || "No Name"}
+</Tooltip>
+
       <nav
         className={`relative ${
           theme === "sunset"
             ? "bg-zinc-500 text-purple-700"
             : "bg-purple-300 text-blue-800"
-        }  mt-3 mx-1 shadow  lg:rounded-full rounded-xl`}
+        }  mt-3 mx-1 shadow  lg:rounded-2xl rounded-xl`}
       >
         <div className="container px-6 py-4 mx-auto">
           <div className="lg:flex lg:items-center lg:justify-between">
@@ -164,13 +171,7 @@ const Navbar = () => {
                     </svg>
                   </label>
                 </div>
-                {
-                  user ?<button onClick={logOut} className="btn rounded-2xl">
-                  Logout
-                </button>  : <Link to={"/login"} className="btn rounded-2xl">
-                  Login
-                </Link>
-                }
+              
                 {
                   user && <button
                   type="button"
@@ -178,18 +179,31 @@ const Navbar = () => {
                   aria-label="toggle profile dropdown"
                 >
                   <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
+                 
                     <img
-                      src={userImg || user?.photoURL}
+                    
+                      src={ user?.photoURL || userImg}
                       referrerPolicy="no-referrer"
-                      className="object-cover w-full h-full"
+                      className="object-cover w-full h-full my-anchor-element"
                       alt="avatar"
                     />
+                    
+                    
                   </div>
 
                   <h3 className="mx-2  lg:hidden">
-                    {user?.displayName}
+                    { user?.displayName ||"No Name"}
                   </h3>
                 </button>
+                }
+                  {
+                  user ?<><button onClick={logOut} className="btn rounded-2xl">
+                  Logout
+                </button>
+                {/* <button className="btn rounded-2xl">Update Profile</button> */}
+                </>  : <Link to={"/login"} className="btn rounded-2xl">
+                  Login
+                </Link>
                 }
               </div>
             </div>
