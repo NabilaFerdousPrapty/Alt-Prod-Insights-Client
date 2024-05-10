@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import logo from "../../../assets/AltProdInsightsLogo.png";
 import { Link, NavLink } from "react-router-dom";
+import UseAuth from './../../../hooks/UseAuth/UseAuth';
+import userImg from "../../../assets/user.png";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  // const { user, logout } = UseAuth();
-
+  const { user, logOut } = UseAuth();
+  // console.log(logOut);
+// console.log(user);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "sunset";
   });
@@ -104,15 +108,21 @@ const Navbar = () => {
                   Queries
                 </NavLink>
                 
-                  <NavLink className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
-                    Recommendations For Me
-                  </NavLink>
-                  <NavLink className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
+                 {
+                  user &&  <NavLink to={'/recommendation'} className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
+                  Recommendations For Me
+                </NavLink>
+                 }
+                 {
+                  user &&  <NavLink to={'/myQueries'} className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
                   MyQueries
                   </NavLink>
-                  <NavLink className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
-                  My recommendations
-                  </NavLink>
+                 }
+                  {
+                    user && <NavLink to={'/myRecommendations'} className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
+                    My recommendations
+                    </NavLink>
+                  }
               
               </div>
 
@@ -154,26 +164,33 @@ const Navbar = () => {
                     </svg>
                   </label>
                 </div>
-                <Link to={"/login"} className="btn rounded-2xl">
+                {
+                  user ?<button onClick={logOut} className="btn rounded-2xl">
+                  Logout
+                </button>  : <Link to={"/login"} className="btn rounded-2xl">
                   Login
                 </Link>
-                {/* <button
+                }
+                {
+                  user && <button
                   type="button"
                   className="flex items-center focus:outline-none"
                   aria-label="toggle profile dropdown"
                 >
                   <div className="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
                     <img
-                      src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+                      src={userImg || user?.photoURL}
+                      referrerPolicy="no-referrer"
                       className="object-cover w-full h-full"
                       alt="avatar"
                     />
                   </div>
 
                   <h3 className="mx-2  lg:hidden">
-                    Khatab wedaa
+                    {user?.displayName}
                   </h3>
-                </button> */}
+                </button>
+                }
               </div>
             </div>
           </div>

@@ -1,11 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 import logo from "../../assets/AltProdInsightsLogo.png";
-import { useContext } from "react";
-import { AuthContext } from "../../Provider/AuthProvider";
+
+import UseAuth from "../../hooks/UseAuth/UseAuth";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const {signIn,
-    signInWithGoogle}=useContext(AuthContext)
+    signInWithGoogle}=UseAuth();
+    const navigate=useNavigate();
+    const handleGoogleSignIn=async()=>{
+      try{
+        await signInWithGoogle()
+      toast.success('Signed in with Google successfully')
+      navigate('/')
+      }
+      catch(error){
+        console.log(error);
+        toast.error(error.message)
+      }
+    }
+    const handleEmailSignIn=async(e)=>{
+      e.preventDefault()
+     const form=e.target;
+     const email=form.email.value;
+      const password=form.password.value;
+      console.log({email,password});
+      try{
+        const result=await signIn(email,password)
+        console.log(result);
+        navigate('/')
+        form.reset();
+        toast.success('Signed in with email successfully')
+      }catch(error){
+        console.log(error);
+        toast.error(error.message);
+        form.reset();
+      }
+    }
+
   return (
     <div>
       <div className="flex w-full max-w-lg gap-3 mx-auto overflow-hidden rounded-lg shadow-lg  lg:max-w-5xl my-6 lg:px-2 ">
@@ -19,7 +51,8 @@ const Login = () => {
           <p className="mt-3 text-xl text-center ">Welcome back!</p>
 
           <a
-            href="#"
+          onClick={handleGoogleSignIn}
+            
             className="flex items-center justify-center mt-4 transition-colors duration-300 transform border rounded-lg  "
           >
             <div className="px-4 py-2">
@@ -48,7 +81,7 @@ const Login = () => {
             </span>
           </a>
           <a
-            href="#"
+           
             className="flex items-center justify-center mt-4 transition-colors duration-300 transform border rounded-lg  "
           >
             <div className="px-4 py-2">
@@ -79,7 +112,8 @@ const Login = () => {
             <span className="w-1/5 border-b  lg:w-1/4"></span>
           </div>
 
-          <div className="mt-4">
+         <form  onSubmit={handleEmailSignIn}>
+         <div className="mt-4">
             <label
               className="block mb-2 text-sm font-medium  "
               htmlFor="LoggingEmailAddress"
@@ -90,6 +124,7 @@ const Login = () => {
               id="LoggingEmailAddress"
               className="block w-full px-4 py-2 focus:outline-none focus:ring focus:ring-blue-300 rounded-md"
               type="email"
+              name="email" required
             />
           </div>
 
@@ -109,15 +144,18 @@ const Login = () => {
             <input
               id="loggingPassword"
               className="block w-full px-4 py-2  focus:outline-none focus:ring focus:ring-blue-300 rounded-md"
-              type="password"
+              name="password"
+              type="password" required
             />
           </div>
-
-          <div className="mt-6">
-            <button className="w-full px-6 py-3 text-sm font-medium tracking-wide bg-purple-600 rounded-xl">
+           <div className="mt-6">
+            <button  className="w-full px-6 py-3 text-sm font-medium tracking-wide bg-purple-600 rounded-xl">
               Sign In
             </button>
           </div>
+         </form>
+
+         
 
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b  md:w-1/4"></span>

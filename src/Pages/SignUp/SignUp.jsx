@@ -1,7 +1,40 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import UseAuth from '../../hooks/UseAuth/UseAuth';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
+    const {signUp,createUser,setUser,user,updateUserProfile,}=UseAuth();
+    const navigate=useNavigate();
+    const handleSignUp= async(e)=>{
+        e.preventDefault();
+        const form=new FormData(e.currentTarget);
+        const userName=form.get('userName');
+        const photoUrl=form.get('photoUrl');
+        const email=form.get('email');
+        const phone=form.get('phone');
+        const password=form.get('password');
+        const confirmPassword=form.get('confirmPassword');
+        // const user={userName,photoUrl,email,phone,password,confirmPassword};
+        // console.log(user);
+        if (password !== confirmPassword) {
+            toast.error('Passwords do not match');
+            return;
+            
+        }
+        try{
+            const result=await createUser(email,password);
+            console.log(result);
+            await updateUserProfile(userName,photoUrl);
+            setUser({...user,photoUrl:photoUrl,displayName:userName});
+            navigate('/');
+            toast.success('Account created successfully');
+        }catch(error){
+            console.log(error);
+            toast.error(error.message);
+        }
+
+    }
     return (
         <section className="rtl">
             <div className="flex justify-center min-h-screen mt-6 rounded-xl">
@@ -20,35 +53,36 @@ const SignUp = () => {
 
 
 
-                        <form className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+                        <form onSubmit={handleSignUp} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                             <div>
-                                <label className="block mb-2 text-sm ">First Name</label>
-                                <input type="text" placeholder="John" className="block w-full px-5 py-3 mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                <label className="block mb-2 text-sm ">User Name</label>
+                                <input name='userName' type="text" placeholder="John Doe" className="block w-full px-5 py-3  mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" required />
                             </div>
 
-                            <div>
-                                <label className="block mb-2 text-sm ">Last name</label>
-                                <input type="text" placeholder="Snow" className="block w-full px-5 py-3 mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                            <div className=''>
+                                <label className="block mb-2 text-sm ">Photo Url</label>
+                                <input name='photoUrl' type="url" placeholder="johnsnow@example.jpg" className="block w-full px-5 py-3 mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                             </div>
 
+                           
+
+                            <div className=''>
+                                <label className="block mb-2 text-sm ">Email address</label>
+                                <input name='email' type="email" placeholder="johnsnow@example.com" className="block w-full px-5 py-3 mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" required />
+                            </div>
                             <div>
                                 <label className="block mb-2 text-sm ">Phone number</label>
-                                <input type="text" placeholder="XXX-XX-XXXX-XXX" className="block w-full px-5 py-3 mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
-                            </div>
-
-                            <div>
-                                <label className="block mb-2 text-sm ">Email address</label>
-                                <input type="email" placeholder="johnsnow@example.com" className="block w-full px-5 py-3 mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                <input name='phone'  type="text" placeholder="XXX-XX-XXXX-XXX" className="block w-full px-5 py-3 mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                             </div>
 
                             <div>
                                 <label className="block mb-2 text-sm ">Password</label>
-                                <input type="password" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                <input name='password'  type="password" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" required />
                             </div>
 
                             <div>
                                 <label className="block mb-2 text-sm ">Confirm password</label>
-                                <input type="password" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                                <input name='confirmPassword' type="password" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2  placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" required />
                             </div>
 
                             <button
