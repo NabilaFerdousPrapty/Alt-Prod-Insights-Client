@@ -1,41 +1,44 @@
-import  { useEffect, useState } from "react";
-import logo from '../../../assets/AltProdInsightsLogo.png'
+import { useEffect, useState } from "react";
+import logo from "../../../assets/AltProdInsightsLogo.png";
 import { Link, NavLink } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  // const { user, logout } = UseAuth();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
   const [theme, setTheme] = useState(() => {
-    
     return localStorage.getItem("theme") || "sunset";
   });
 
   const toggleTheme = (e) => {
     if (e.target.checked) {
-      setTheme("autumn");
-
-    } else {
       setTheme("sunset");
+    } else {
+      setTheme("autumn");
     }
   };
-  useEffect(()=>{
-    localStorage.setItem("theme",theme);
-    const currentTheme =localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme",currentTheme);
-  
-  },[theme])
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const currentTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", currentTheme);
+  }, [theme]);
 
   return (
     <div>
-     <nav className={`relative ${theme === "sunset" ? "bg-zinc-500 text-purple-700" : "bg-purple-300 text-blue-800"}  mt-3 mx-1 shadow  lg:rounded-full rounded-xl`}>
-
+      <nav
+        className={`relative ${
+          theme === "sunset"
+            ? "bg-zinc-500 text-purple-700"
+            : "bg-purple-300 text-blue-800"
+        }  mt-3 mx-1 shadow  lg:rounded-full rounded-xl`}
+      >
         <div className="container px-6 py-4 mx-auto">
           <div className="lg:flex lg:items-center lg:justify-between">
             <div className="flex items-center justify-between">
-              <Link to={'/'} >
-               <img src={logo} alt="" className="w-1/5" />
+              <Link to={"/"}>
+                <img src={logo} alt="" className="w-1/5" />
               </Link>
 
               {/* Mobile menu button */}
@@ -89,29 +92,28 @@ const Navbar = () => {
             >
               <div className="flex flex-col lg:flex-row lg:items-center lg:mx-8">
                 <NavLink
-                  to={'/'}
+                  to={"/"}
                   className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
                 >
                   Home
                 </NavLink>
                 <NavLink
-                  to={'/queries'}
+                  to={"/queries"}
                   className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
                 >
                   Queries
                 </NavLink>
-                <a
-                  href="#"
-                  className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
-                >
-                  Random Item
-                </a>
-                <a
-                  href="#"
-                  className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
-                >
-                  Experts
-                </a>
+                
+                  <NavLink className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
+                    Recommendations For Me
+                  </NavLink>
+                  <NavLink className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
+                  MyQueries
+                  </NavLink>
+                  <NavLink className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
+                  My recommendations
+                  </NavLink>
+              
               </div>
 
               <div className="flex items-center mt-4 lg:mt-0 justify-between gap-3">
@@ -132,9 +134,9 @@ const Navbar = () => {
                       <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
                     </svg>
                     <input
-                    onClick={toggleTheme}
+                      onClick={toggleTheme}
                       type="checkbox"
-                      value="autumn"
+                      value=""
                       className="toggle theme-controller"
                     />
                     <svg
@@ -152,7 +154,9 @@ const Navbar = () => {
                     </svg>
                   </label>
                 </div>
-                 <Link to={'/login'} className="btn rounded-2xl">Login</Link>
+                <Link to={"/login"} className="btn rounded-2xl">
+                  Login
+                </Link>
                 {/* <button
                   type="button"
                   className="flex items-center focus:outline-none"
