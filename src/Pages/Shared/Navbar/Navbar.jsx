@@ -49,7 +49,7 @@ const Navbar = () => {
           <div className="lg:flex lg:items-center lg:justify-between">
             <div className="flex items-center justify-between">
               <Link to={"/"}>
-                <img src={logo} alt="" className="w-1/5" />
+                <img src={logo} alt="" className="xl:w-2/5 lg:w-28  md:w-[30%] w-[29%]" />
               </Link>
 
               {/* Mobile menu button */}
@@ -104,30 +104,30 @@ const Navbar = () => {
               <div className="flex flex-col lg:flex-row lg:items-center lg:mx-8">
                 <NavLink
                   to={"/"}
-                  className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
+                  className="xl:px-3 lg:px-1 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
                 >
                   Home
                 </NavLink>
                 <NavLink
                   to={"/queries"}
-                  className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
+                  className="xl:px-3 lg:px-1 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
                 >
                   Queries
                 </NavLink>
                 
                  {
-                  user &&  <NavLink to={'/recommendation'} className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
+                  user &&  <NavLink to={'/recommendation'} className="xl:px-3 lg:px-1 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
                   Recommendations For Me
                 </NavLink>
                  }
                  {
-                  user &&  <NavLink to={'/myQueries'} className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
+                  user &&  <NavLink to={'/myQueries'} className="xl:px-3 lg:px-1 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
                   MyQueries
                   </NavLink>
                  }
                   {
-                    user && <NavLink to={'/myRecommendations'} className="px-3 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
-                    My recommendations
+                    user && <NavLink to={'/myRecommendations'} className="xl:px-3 lg:px-1 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 ">
+                    My Recommendations
                     </NavLink>
                   }
               

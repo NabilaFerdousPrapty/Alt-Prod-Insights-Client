@@ -1,9 +1,10 @@
+import Banner from "../../components/BannerSlider/Banner";
 
 
 const Home = () => {
     return (
-        <div className='mx-4'>
-            Home
+        <div className='mx-1'>
+            <Banner/>
         </div>
     );
 };
