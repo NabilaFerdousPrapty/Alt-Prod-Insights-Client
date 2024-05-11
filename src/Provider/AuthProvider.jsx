@@ -1,6 +1,7 @@
 
 import { createContext, useEffect, useState } from 'react'
 import {
+  GithubAuthProvider,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -13,9 +14,11 @@ import propTypes from 'prop-types'
 import auth from '../Firebase/Firebase.config'
 
 
+
 export const AuthContext = createContext(null)
 
-const googleProvider = new GoogleAuthProvider()
+const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
@@ -34,6 +37,10 @@ const AuthProvider = ({ children }) => {
   const signInWithGoogle = () => {
     setLoading(true)
     return signInWithPopup(auth, googleProvider)
+  }
+  const signInWithGithub = () => {
+    setLoading(true)
+    return signInWithPopup(auth, githubProvider)
   }
 
   const logOut = async () => {
@@ -71,6 +78,7 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     logOut,
     updateUserProfile,
+    signInWithGithub
   }
 
   return (

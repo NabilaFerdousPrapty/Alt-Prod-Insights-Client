@@ -64,21 +64,23 @@ console.log("Time:", timeString);
 
     }).then(response => response.json()).then(data => {
         console.log(data);
+       if (data.insertedId) {
         Swal.fire({
-            icon: 'success',
-            title: 'Query Added Successfully',
-
-            showConfirmButton: false,
-            timer: 1500
-        
-        })
+          icon: 'success',
+          title: 'Query Added Successfully',
+confirmButtonText: 'OK',
+          
+          timer: 1500
+      
+      })
+       }
         form.reset();
     }).catch(error => {
         console.log(error);
         Swal.fire({
             icon: 'error',
             title: 'Failed to Add Query',
-            showConfirmButton: false,
+            confirmButtonText: 'OK',
             timer: 1500
         })
         form.reset();
@@ -116,29 +118,29 @@ console.log("Time:", timeString);
               <form onSubmit={handleSubmit}>
                 <div>
                   <label htmlFor="productName" className="block mb-2 text-sm t">Product Name</label>
-                  <input type="text" name="productName" id="productName"  placeholder="Product Name" className="block w-full px-4 py-2 mt-2  border border-gray-200 rounded-lg dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input type="text" name="productName" id="productName"  placeholder="Product Name" className="block w-full px-4 py-2 mt-2  border border-gray-200 rounded-lg dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" required/>
                 </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
               <div className="mt-2">
                   <label htmlFor="productBrand" className="block mb-2 text-sm t">Product Brand</label>
-                  <input type="text" name="productBrand" id="productBrand"  placeholder="Product Brand" className="block w-full px-4 py-2 mt-2  border border-gray-200 rounded-lg dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input type="text" name="productBrand" id="productBrand"  placeholder="Product Brand" className="block w-full px-4 py-2 mt-2  border border-gray-200 rounded-lg dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" required />
                 </div>
 
                 <div className="mt-2">
                   <label htmlFor="productImageUrl" className="block mb-2 text-sm t">Product Image URL</label>
-                  <input type="text" name="productImageUrl" id="productImageUrl" placeholder="Product Image URL" className="block w-full px-4 py-2 mt-2  border border-gray-200 rounded-lg dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input type="text" name="productImageUrl" id="productImageUrl" placeholder="Product Image URL" className="block w-full px-4 py-2 mt-2  border border-gray-200 rounded-lg dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" required/>
                 </div>
 
               </div>
                 <div className="mt-2">
                   <label htmlFor="queryTitle" className="block mb-2 text-sm t">Query Title</label>
-                  <input type="text" name="queryTitle" id="queryTitle"  placeholder="Query Title" className="block w-full px-4 py-2 mt-2  border border-gray-200 rounded-lg dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input type="text" name="queryTitle" id="queryTitle"  placeholder="Query Title" className="block w-full px-4 py-2 mt-2  border border-gray-200 rounded-lg dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" required />
                 </div>
 
                 <div className="mt-2">
-                  <label htmlFor="buyingReasonDetails" className="block mb-2 text-sm t">Buying Reason Details</label>
-                  <textarea name="buyingReasonDetails" id="buyingReasonDetails"  placeholder="Buying Reason Details" className="block w-full px-4 py-2 mt-2  border border-gray-200 rounded-lg dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <label htmlFor="buyingReasonDetails" className="block mb-2 text-sm t">Boycotting Reason Details</label>
+                  <textarea name="buyingReasonDetails" id="buyingReasonDetails"  placeholder="Boycotting Reason Details" className="block w-full px-4 py-2 mt-2  border border-gray-200 rounded-lg dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" required/>
                 </div>
 
                 <div className="mt-2">

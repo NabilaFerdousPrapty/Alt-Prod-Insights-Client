@@ -6,12 +6,23 @@ import toast from "react-hot-toast";
 
 const Login = () => {
   const {signIn,
-    signInWithGoogle}=UseAuth();
+    signInWithGoogle,signInWithGithub}=UseAuth();
     const navigate=useNavigate();
     const handleGoogleSignIn=async()=>{
       try{
         await signInWithGoogle()
       toast.success('Signed in with Google successfully')
+      navigate('/')
+      }
+      catch(error){
+        console.log(error);
+        toast.error(error.message)
+      }
+    }
+    const handleGithubSignIn=async()=>{
+      try{
+        await signInWithGithub()
+      toast.success('Signed in with Github successfully')
       navigate('/')
       }
       catch(error){
@@ -80,7 +91,7 @@ const Login = () => {
               Sign in with Google
             </span>
           </a>
-          <a
+          <a onClick={handleGithubSignIn}
            
             className="flex items-center justify-center mt-4 transition-colors duration-300 transform border rounded-lg  "
           >
