@@ -49,7 +49,7 @@ const Navbar = () => {
           <div className="lg:flex lg:items-center lg:justify-between">
             <div className="flex items-center justify-between">
               <Link to={"/"}>
-                <img src={logo} alt="" className="xl:w-2/5 lg:w-28  md:w-[30%] w-[29%]" />
+                <img src={logo} alt="" className={` xl:w-2/5 lg:w-28  md:w-[30%] w-[29%] `} />
               </Link>
 
               {/* Mobile menu button */}

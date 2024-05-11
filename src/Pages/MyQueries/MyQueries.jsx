@@ -1,9 +1,14 @@
+import { Link } from "react-router-dom";
 
 
 const MyQueries = () => {
     return (
         <div>
-           <h1> MyQueries</h1> 
+           <Link to={'/addQueries'}>
+           <div className="btn">
+            Add Queries
+           </div>
+           </Link>
         </div>
     );
 };
