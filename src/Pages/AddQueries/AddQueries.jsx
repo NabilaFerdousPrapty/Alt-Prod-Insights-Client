@@ -55,7 +55,7 @@ console.log("Time:", timeString);
         currentTime
     };
     console.log(newQuery);
-    fetch('http://localhost:5000/queries',{
+    fetch(`${import.meta.env.VITE_API_URL}/queries`,{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

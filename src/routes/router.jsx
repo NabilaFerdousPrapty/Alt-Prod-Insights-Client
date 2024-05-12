@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader:()=>fetch('http://localhost:5000/queries')
+       loader:()=>fetch(`${import.meta.env.VITE_API_URL}/queries`)
       },
       {
         path: "/queries",
