@@ -24,6 +24,7 @@ export const router = createBrowserRouter([
       {
         path: "/queries",
         element: <Queries />,
+        loader:()=>fetch(`${import.meta.env.VITE_API_URL}/queries`)
       },
       {
         path:'/login',

@@ -17,10 +17,15 @@ const SignUp = () => {
     const confirmPassword = form.get('confirmPassword');
         // const user={userName,photoUrl,email,phone,password,confirmPassword};
         // console.log(user);
+        const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
         if (password !== confirmPassword) {
             toast.error('Passwords do not match');
             return;
             
+        }
+        if(!regex.test(password)){
+            toast.error('Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters');
+            return;
         }
         try{
             const result=await createUser(email,password);

@@ -5,6 +5,7 @@ import UseAuth from './../../../hooks/UseAuth/UseAuth';
 import userImg from "../../../assets/user.png";
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'
+import useThemeToggle from "../../../hooks/UseThemeToogle/UseThemeTooogle";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = UseAuth();
@@ -14,18 +15,18 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
- 
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "sunset";
-  });
+  const { theme, toggleTheme } = useThemeToggle();
+  // const [theme, setTheme] = useState(() => {
+  //   return localStorage.getItem("theme") || "sunset";
+  // });
 
-  const toggleTheme = (e) => {
-    if (e.target.checked) {
-      setTheme("sunset");
-    } else {
-      setTheme("autumn");
-    }
-  };
+  // const toggleTheme = (e) => {
+  //   if (e.target.checked) {
+  //     setTheme("sunset");
+  //   } else {
+  //     setTheme("autumn");
+  //   }
+  // };
   useEffect(() => {
     localStorage.setItem("theme", theme);
     const currentTheme = localStorage.getItem("theme");
@@ -41,9 +42,9 @@ const Navbar = () => {
       <nav
         className={`relative ${
           theme === "sunset"
-            ? "bg-zinc-500 text-purple-700"
+            ? "bg-zinc-300 text-purple-700"
             : "bg-purple-300 text-blue-800"
-        }  mt-3 mx-1 shadow  lg:rounded-2xl rounded-xl`}
+        }  mt-3 mx-1 shadow  lg:rounded-lg rounded-sm`}
       >
         <div className="container px-6 py-4 mx-auto">
           <div className="lg:flex lg:items-center lg:justify-between">

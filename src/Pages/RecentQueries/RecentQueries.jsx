@@ -7,7 +7,7 @@ const RecentQueries = ({queries}) => {
     const sortedQueries = queries.sort((a, b) => new Date(b.currentDate + ' ' + b.currentTime) - new Date(a.currentDate + ' ' + a.currentTime));
     const recentlyAddedQueries = sortedQueries.slice(0, 6);
     return (
-       <>
+       <div className='my-5'>
          <div className='mt-10 mb-5'>
               <h1 className='text-5xl text-center font-semibold'>Recently Added Queries</h1>
               <p className='text-center font-serif font-medium my-4 text-blue-400'> 
@@ -20,7 +20,7 @@ const RecentQueries = ({queries}) => {
            recentlyAddedQueries.map((query) => <QueryCard key={query._id} query={query} />)
           }
         </div>
-       </>
+       </div>
     );
 };
 
