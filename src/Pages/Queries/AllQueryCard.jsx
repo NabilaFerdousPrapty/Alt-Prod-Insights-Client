@@ -1,9 +1,11 @@
-import React from "react";
-import useThemeToggle from "../../hooks/UseThemeToogle/UseThemeTooogle";
 
+import useThemeToggle from "../../hooks/UseThemeToogle/UseThemeTooogle";
+import { Link } from "react-router-dom";
+import propTypes from "prop-types";
 const AllQueryCard = ({ query }) => {
-  const {theme}=useThemeToggle();
+  const { theme } = useThemeToggle();
   const {
+    _id,
     productName,
     productBrand,
     productImageUrl,
@@ -16,11 +18,13 @@ const AllQueryCard = ({ query }) => {
     currentDate,
     currentTime,
   } = query;
-  const buttonBgColor = theme === 'sunset' ? 'bg-slate-800' : 'bg-white';
-  const buttonTextColor = theme === 'sunset' ? 'text-white' : 'text-purple-700';
+  
+  // console.log(_id);
+  const buttonBgColor = theme === "sunset" ? "bg-slate-800" : "bg-white";
+  const buttonTextColor = theme === "sunset" ? "text-white" : "text-purple-700";
   return (
     <div>
-      <div className="flex flex-col max-w-lg p-6 space-y-6 overflow-hidden rounded-lg   lg:h-[750px] md:h-[800px] border-2 border-gray-400 shadow-2xl">
+      <div className="flex flex-col max-w-3xl p-6 space-y-6 overflow-hidden rounded-lg   lg:h-[750px] md:h-[800px] border-2 border-gray-400 shadow-2xl">
         <div className="flex space-x-4">
           <img
             alt=""
@@ -53,22 +57,25 @@ const AllQueryCard = ({ query }) => {
         </div>
         <div className="flex flex-wrap justify-between ">
           <button
-            aria-label="Share this post"
-            type="button"
+            
             className={`p-2 ${buttonBgColor} ${buttonTextColor}   text-sm bg-slate-500 border rounded-lg border-gray-800`}
           >
             Give Recommendation
           </button>
-          <button
-            type="button"
+          <Link
+            to={`/queries/${query._id}`}
+           
             className={`p-2 ${buttonBgColor} ${buttonTextColor}   text-sm bg-slate-500 border rounded-lg border-gray-800`}
           >
             View Details
-          </button>
+          </Link>
         </div>
         <div>
           <div className={`text-center mx-auto`}>
-            <button type="button" className={`btn ${buttonBgColor} ${buttonTextColor}  `}>
+            <button
+             
+              className={`btn ${buttonBgColor} ${buttonTextColor}  `}
+            >
               Total Recommendations:
               <span>{recommendationCount}</span>
             </button>
@@ -80,3 +87,6 @@ const AllQueryCard = ({ query }) => {
 };
 
 export default AllQueryCard;
+AllQueryCard.propTypes = {
+  query: propTypes.object.isRequired,
+};

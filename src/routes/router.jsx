@@ -10,6 +10,7 @@ import MyQueries from "../Pages/MyQueries/MyQueries";
 import MyRecommendations from "../Pages/MyRecommendations/MyRecommendations";
 import PrivateRoute from "../Pages/Private/PrivateRoute";
 import AddQueries from "../Pages/AddQueries/AddQueries";
+import QueryDetails from "../Pages/QueryDetails/QueryDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -19,41 +20,70 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-       loader:()=>fetch(`${import.meta.env.VITE_API_URL}/queries`)
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/queries`),
       },
       {
         path: "/queries",
         element: <Queries />,
-        loader:()=>fetch(`${import.meta.env.VITE_API_URL}/queries`)
+        loader: () => fetch(`${import.meta.env.VITE_API_URL}/queries`),
       },
       {
-        path:'/login',
-        element:<Login/>
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signUp",
+        element: <SignUp />,
+      },
+      {
+        path: "/recommendation",
+        element: (
+          <PrivateRoute>
+            <RecommendationsForMe />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myQueries",
+        element: (
+          <PrivateRoute>
+            <MyQueries />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myRecommendations",
+        element: (
+          <PrivateRoute>
+            <MyRecommendations />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/addQueries",
+        element: (
+          <PrivateRoute>
+            <AddQueries />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/queries/:id",
+        element: (
+          <PrivateRoute>
+            <QueryDetails />
+          </PrivateRoute>
+        ),
+        loader:({params})=> fetch(`${import.meta.env.VITE_API_URL}/queries/${params.id}`)
       },{
-        path:'/signUp',
-        element:<SignUp/>
-      },{
-        path:'/recommendation',
-        element:<PrivateRoute>
-          <RecommendationsForMe/>
-        </PrivateRoute>
-      },{
-        path:'/myQueries',
-        element:<PrivateRoute>
-          <MyQueries/>
-        </PrivateRoute>
-      },{
-        path:'/myRecommendations',
-        element:<PrivateRoute>
-          <MyRecommendations/>
-        </PrivateRoute>
-      },{
-        path:'/addQueries',
-        element:<PrivateRoute>
-          <AddQueries/>
-        </PrivateRoute>
-
+        path:'/myQueries/:id',
+        element:(
+          <PrivateRoute>
+            <QueryDetails/>
+          </PrivateRoute>
+        ),
+        loader:({params})=> fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`)
       }
     ],
   },
-])
+]);

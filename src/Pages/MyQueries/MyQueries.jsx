@@ -8,7 +8,7 @@ const MyQueries = () => {
   // console.log(user?.email);
   const [myQueries, setMyQueries] = useState([]);
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/queries/${user?.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/queriess/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         const sortedQueries = data.sort((a, b) => {

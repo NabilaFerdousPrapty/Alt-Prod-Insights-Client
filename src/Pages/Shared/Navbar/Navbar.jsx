@@ -113,7 +113,7 @@ const Navbar = () => {
                   to={"/queries"}
                   className="xl:px-3 lg:px-1 py-2 mx-3 mt-2  transition-colors duration-300 transform rounded-md lg:mt-0 "
                 >
-                  Queries
+                  All Queries
                 </NavLink>
                 
                  {

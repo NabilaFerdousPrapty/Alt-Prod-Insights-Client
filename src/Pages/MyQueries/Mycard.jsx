@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Mycard = ({ anyQueries }) => {
-    const {productName,currentDate,currentTime,productImageUrl,productBrand,queryTitle,buyingReasonDetails}=anyQueries;
+    const {_id,productName,currentDate,currentTime,productImageUrl,productBrand,queryTitle,buyingReasonDetails}=anyQueries;
     return (
         <div className="bg-white rounded-md shadow-md p-4">
             <div className="flex justify-between items-center mb-4">
@@ -17,7 +18,7 @@ const Mycard = ({ anyQueries }) => {
                 </div>
             </div>
             <div className='w-3/5 mx-auto flex flex-col gap-4 my-4'>
-                <div className="btn bg-purple-300">ViewDetails</div>
+                <Link to={`/myQueries/${_id}`} className="btn bg-purple-300">ViewDetails</Link>
                 <div className="btn bg-purple-300">Update</div>
                 <div className="btn bg-purple-300">
                     Delete
