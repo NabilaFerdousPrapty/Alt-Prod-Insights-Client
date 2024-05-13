@@ -11,6 +11,8 @@ import MyRecommendations from "../Pages/MyRecommendations/MyRecommendations";
 import PrivateRoute from "../Pages/Private/PrivateRoute";
 import AddQueries from "../Pages/AddQueries/AddQueries";
 import QueryDetails from "../Pages/QueryDetails/QueryDetails";
+import AddRecomendation from "../Pages/AddRecomendation/AddRecomendation";
+import UpdateData from "../Pages/Update/UpdateData";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -83,6 +85,17 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader:({params})=> fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`)
+      },{
+        path:'/myQueries/update/:id',
+        element:<PrivateRoute>
+          <UpdateData>
+
+          </UpdateData>
+        </PrivateRoute>,
+        loader:({params})=> fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`)
+      },{
+        path:'/myQueries/delete/:id',
+        
       }
     ],
   },

@@ -1,8 +1,44 @@
-import React from 'react';
+import { set } from 'firebase/database';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const Mycard = ({ anyQueries }) => {
     const {_id,productName,currentDate,currentTime,productImageUrl,productBrand,queryTitle,buyingReasonDetails}=anyQueries;
+    const [deleteing,setDeleteing]=useState(false);
+    const handleDelete= async (id)=>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                setDeleteing(true);
+                fetch(`${import.meta.env.VITE_API_URL}/myQueries/delete/${id}`,{
+                    method:'DELETE'
+                }).then(response=>response.json()).then(data=>{
+                    console.log(data);
+                    if(data.deletedCount>0){
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                          )
+                          
+                    }
+                    setDeleteing(false);
+                }).catch(error=>{
+                    console.log(error);
+                    setDeleteing(false);
+                })
+            }
+          })
+    }
+
     return (
         <div className="bg-white rounded-md shadow-md p-4">
             <div className="flex justify-between items-center mb-4">
@@ -19,10 +55,10 @@ const Mycard = ({ anyQueries }) => {
             </div>
             <div className='w-3/5 mx-auto flex flex-col gap-4 my-4'>
                 <Link to={`/myQueries/${_id}`} className="btn bg-purple-300">ViewDetails</Link>
-                <div className="btn bg-purple-300">Update</div>
-                <div className="btn bg-purple-300">
+                <Link to={`/myQueries/update/${_id}`} className="btn bg-purple-300">Update</Link>
+                <button onClick={()=>handleDelete(_id)}  className="btn bg-purple-300">
                     Delete
-                </div>
+                </button>
             </div>
            
            

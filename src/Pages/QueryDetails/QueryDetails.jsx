@@ -1,10 +1,13 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import useThemeToggle from "../../hooks/UseThemeToogle/UseThemeTooogle";
+import AddRecomendation from "../AddRecomendation/AddRecomendation";
+import { useState } from "react";
 
 const QueryDetails = () => {
   const { theme } = useThemeToggle();
   let bgColor, textColor;
   const query = useLoaderData() || {};
+  
   const {
     productName,
     productBrand,
@@ -25,9 +28,18 @@ const QueryDetails = () => {
     bgColor = "bg-slate-200";
     textColor = "text-black";
   }
+  const [hidden, setHidden] = useState(true);
+  const handleToggle = () => {
+    setHidden(!hidden);
+  }
+  const [recommendationCounting, setRecommendationCounting] = useState(query.recommendationCount);
 
+  const updateRecommendationCount = (count) => {
+    setRecommendationCounting(count);
+  };
   return (
-    <div className={`my-3 ${bgColor}  ${textColor} rounded-2xl`}>
+   <div>
+     <div className={`my-3 ${bgColor}  ${textColor} rounded-2xl`}>
       <section className="p-6 ">
         <div className="container grid gap-6 mx-auto text-center lg:grid-cols-2 xl:grid-cols-5">
           <div className="w-full px-6 py-10 rounded-md sm:px-12 md:px-16 xl:col-span-2 bg-gray-50">
@@ -55,7 +67,7 @@ const QueryDetails = () => {
                   className="object-cover w-12 h-12 rounded-full shadow bg-gray-500"
                 />
                 <div>
-                  <p className="text-gray-500">Posted by: {name} </p>
+                  <p className="text-gray-500">Posted by: {name} with {email} </p>
                   <p>
                     on {currentDate} at {currentTime}
                   </p>
@@ -69,7 +81,7 @@ const QueryDetails = () => {
               </p>
             </div>
             <div>
-              <button className="px-4 py-2 text-white bg-blue-500 rounded-md">
+              <button onClick={handleToggle} className="px-4 py-2 text-white bg-blue-500 rounded-md">
                 Recommend
               </button>
             </div>
@@ -82,6 +94,12 @@ const QueryDetails = () => {
         </div>
       </section>
     </div>
+    <div>
+     {
+      !hidden && <AddRecomendation updateRecommendationCount={updateRecommendationCount} query={query} />
+     }
+    </div>
+   </div>
   );
 };
 
