@@ -21,12 +21,16 @@ const AllRecomendation = () => {
       <h1 className="text-3xl font-semibold text-purple-800 text-center my-5">
         All Recommendations
       </h1>
-      <div className="my-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <p className="text-center font-medium">
+        Here you can see all the recommendations that have been made by the
+        users So far on the queries posted by other users.
+      </p>
+      <div className="my-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {allQueries.length > 0 ? (
           allQueries.map((query) => (
             <div
               key={query._id}
-              className="w-full max-w-sm overflow-hidden rounded-lg shadow-lg border-2 border-purple-600 my-4 mx-4 py-4 px-4"
+              className="w-full max-w-sm overflow-hidden rounded-lg shadow-lg border-2 border-purple-600 my-4  py-4 px-4"
             >
               <img
                 className="object-cover object-center w-full h-56"

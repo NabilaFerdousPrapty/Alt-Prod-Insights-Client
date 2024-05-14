@@ -6,7 +6,7 @@ const RecommendationsForMe = () => {
   const { user } = UseAuth();
   const [recommendationForMe, setRecommendationsForMe] = useState([]);
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/ForMeRecommendations/${user?.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/ForMeRecommendations/${user?.email}`,{credentials:'include'})
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

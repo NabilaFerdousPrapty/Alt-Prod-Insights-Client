@@ -1,5 +1,4 @@
-
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from "react";
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -9,64 +8,68 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
-} from 'firebase/auth'
-import propTypes from 'prop-types'
-import auth from '../Firebase/Firebase.config'
+} from "firebase/auth";
+import propTypes from "prop-types";
+import auth from "../Firebase/Firebase.config";
+import axios from "axios";
 
-
-
-export const AuthContext = createContext(null)
+export const AuthContext = createContext(null);
 
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const createUser = (email, password) => {
-    setLoading(true)
-    return createUserWithEmailAndPassword(auth, email, password)
-  }
+    setLoading(true);
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
 
   const signIn = (email, password) => {
-    setLoading(true)
-    return signInWithEmailAndPassword(auth, email, password)
-  }
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
   const signInWithGoogle = () => {
-    setLoading(true)
-    return signInWithPopup(auth, googleProvider)
-  }
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
+  };
   const signInWithGithub = () => {
-    setLoading(true)
-    return signInWithPopup(auth, githubProvider)
-  }
+    setLoading(true);
+    return signInWithPopup(auth, githubProvider);
+  };
 
   const logOut = async () => {
-    setLoading(true)
-    return signOut(auth)
-  }
+    setLoading(true);
+    const data = await axios(`${import.meta.env.VITE_API_URL}/logout`,{
+      withCredentials:true,
+    
+    });
+    console.log(data);
+    return signOut(auth);
+  };
 
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
-    })
-  }
+    });
+  };
 
   // onAuthStateChange
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, currentUser => {
-      setUser(currentUser)
-      console.log('CurrentUser-->', currentUser)
-      setLoading(false)
-    })
-    
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      console.log("CurrentUser-->", currentUser);
+      setLoading(false);
+    });
+
     return () => {
-      return unsubscribe()
-    }
-  }, [])
+      return unsubscribe();
+    };
+  }, []);
 
   const authInfo = {
     user,
@@ -78,16 +81,16 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     logOut,
     updateUserProfile,
-    signInWithGithub
-  }
+    signInWithGithub,
+  };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
-  )
-}
+  );
+};
 
-export default AuthProvider
+export default AuthProvider;
 
 AuthProvider.propTypes = {
-    children: propTypes.node.isRequired,
-}
+  children: propTypes.node.isRequired,
+};

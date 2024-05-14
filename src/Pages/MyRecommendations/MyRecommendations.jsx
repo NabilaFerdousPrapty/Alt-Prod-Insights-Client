@@ -7,7 +7,7 @@ const MyRecommendations = () => {
   const { user } = UseAuth();
   const [myRecommendations, setMyRecommendations] = useState([]);
   const fetching=()=>{
-    fetch(`${import.meta.env.VITE_API_URL}/recommendations/${user?.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/recommendations/${user?.email}`,{credentials:'include'})
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import UseAuth from '../../hooks/UseAuth/UseAuth';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const SignUp = () => {
     const {signUp,createUser,setUser,user,updateUserProfile,}=UseAuth();
@@ -31,8 +32,17 @@ const SignUp = () => {
             const result=await createUser(email,password);
             console.log(result);
             await updateUserProfile(userName,photoUrl);
-            setUser({...user,photoURL:photoUrl,displayName:userName,phoneNumber:phone});
-            console.log(user);
+            //optimistic update
+
+            setUser({...result?.user,photoURL:photoUrl,displayName:userName,phoneNumber:phone});
+            // console.log(user);
+            const { data } = await axios.post(
+                `${import.meta.env.VITE_API_URL}/jwt`,
+                { email: result?.user?.email },
+                {
+                  withCredentials: true,
+                }
+              );
             navigate('/');
             toast.success('Account created successfully');
         }catch(error){

@@ -60,6 +60,7 @@ console.log("Time:", timeString);
         headers: {
             'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify(newQuery)
 
     }).then(response => response.json()).then(data => {

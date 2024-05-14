@@ -79,7 +79,10 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_URL}/queries/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/queries/${params.id}`,{
+            credentials:'include'
+          })
+        ,
       },
       {
         path: "/meRecommendations/:id",
@@ -90,7 +93,9 @@ export const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `${import.meta.env.VITE_API_URL}/meRecommendations/${params.id}`
+            `${import.meta.env.VITE_API_URL}/meRecommendations/${params.id}`,{
+              credentials:'include'
+            }
           ),
       },
       {
@@ -101,7 +106,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`,{
+            credentials:'include'
+          }),
       },
       {
         path: "/myQueries/update/:id",
@@ -111,7 +118,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`,{
+            credentials:'include'
+          }),
       },
       {
         path: "/recommendations/delete/:id",
@@ -119,7 +128,9 @@ export const router = createBrowserRouter([
           const queryId = params.id;
           fetch(`${import.meta.env.VITE_API_URL}/myQueries/delete/${queryId}`, {
             method: "DELETE",
-          })
+          },
+          {credentials:'include'}
+        )
             .then((response) => {
               if (response.ok) {
                 console.log("Query deleted successfully");
@@ -140,7 +151,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`),
+          fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`,
+          {credentials:'include'}
+          ),
       },
       {
         path: "/allRecommendations/:id",
@@ -149,7 +162,9 @@ export const router = createBrowserRouter([
             <AllRecomendation></AllRecomendation>
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/allRecommendations/${params.id}`)
+        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/allRecommendations/${params.id}`
+        ,{credentials:'include'}
+        )
        
       },
     ],

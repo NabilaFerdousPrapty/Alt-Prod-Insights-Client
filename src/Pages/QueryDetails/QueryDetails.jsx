@@ -42,7 +42,8 @@ const QueryDetails = () => {
     const fetchRecommendations = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/recommendations?queryId=${_id}`
+          `${import.meta.env.VITE_API_URL}/recommendations?queryId=${_id}`,
+          { credentials: "include" }
         );
         if (response.ok) {
           const data = await response.json();
@@ -112,13 +113,12 @@ const QueryDetails = () => {
                 >
                   Recommend
                 </button>
-                
               </div>
               <div className="btn bg-purple-800 text-white my-3">
-                  <Link to={`/allRecommendations/${_id}`}>
-                    Show All Recommendations
-                  </Link>
-                </div>
+                <Link to={`/allRecommendations/${_id}`}>
+                  Show All Recommendations
+                </Link>
+              </div>
             </div>
             <img
               src={productImageUrl}

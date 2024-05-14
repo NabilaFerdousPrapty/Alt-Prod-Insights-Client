@@ -8,7 +8,7 @@ const MyQueries = () => {
   // console.log(user?.email);
   const [myQueries, setMyQueries] = useState([]);
   const fetching=()=>{
-    fetch(`${import.meta.env.VITE_API_URL}/queriess/${user?.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/queriess/${user?.email}`,{credentials:'include'})
       .then((res) => res.json())
       .then((data) => {
         const sortedQueries = data.sort((a, b) => {
