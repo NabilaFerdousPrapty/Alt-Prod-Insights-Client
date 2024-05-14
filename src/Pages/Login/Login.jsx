@@ -1,10 +1,11 @@
-import { Link,  useNavigate } from "react-router-dom";
+import { Link,  useLocation,  useNavigate } from "react-router-dom";
 import logo from "../../assets/AltProdInsightsLogo.png";
 
 import UseAuth from "../../hooks/UseAuth/UseAuth";
 import toast from "react-hot-toast";
 
 const Login = () => {
+  const location=useLocation();
   const {signIn,
     signInWithGoogle,signInWithGithub}=UseAuth();
     const navigate=useNavigate();
@@ -12,7 +13,9 @@ const Login = () => {
       try{
         await signInWithGoogle()
       toast.success('Signed in with Google successfully')
-      navigate('/')
+      // navigate(location?.state ? location.state: '/')
+      //get access token
+      
       }
       catch(error){
         console.log(error);
@@ -23,7 +26,7 @@ const Login = () => {
       try{
         await signInWithGithub()
       toast.success('Signed in with Github successfully')
-      navigate('/')
+      navigate(location?.state ? location.state: '/')
       }
       catch(error){
         console.log(error);
@@ -42,6 +45,7 @@ const Login = () => {
         navigate('/')
         form.reset();
         toast.success('Signed in with email successfully')
+        navigate(location?.state ? location.state: '/')
       }catch(error){
         console.log(error);
         toast.error(error.message);

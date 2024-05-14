@@ -7,7 +7,7 @@ const MyQueries = () => {
   const { user } = UseAuth();
   // console.log(user?.email);
   const [myQueries, setMyQueries] = useState([]);
-  useEffect(() => {
+  const fetching=()=>{
     fetch(`${import.meta.env.VITE_API_URL}/queriess/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
@@ -18,6 +18,9 @@ const MyQueries = () => {
         });
         setMyQueries(sortedQueries);
       });
+  }
+  useEffect(() => {
+    fetching()
   }, []);
   return (
     <div>
@@ -79,7 +82,7 @@ const MyQueries = () => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 my-5">
         {myQueries.map((anyQueries) => (
-          <Mycard key={anyQueries._id} anyQueries={anyQueries}></Mycard>
+          <Mycard fetching={fetching} key={anyQueries._id} anyQueries={anyQueries}></Mycard>
         ))}
       </div>
 

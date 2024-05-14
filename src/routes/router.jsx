@@ -14,6 +14,7 @@ import QueryDetails from "../Pages/QueryDetails/QueryDetails";
 import AddRecomendation from "../Pages/AddRecomendation/AddRecomendation";
 import UpdateData from "../Pages/Update/UpdateData";
 import ViewDetails from "../Pages/View/ViewDetails";
+import AllRecomendation from "../Pages/AllRecomendations/AllRecomendation";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -77,36 +78,80 @@ export const router = createBrowserRouter([
             <QueryDetails />
           </PrivateRoute>
         ),
-        loader:({params})=> fetch(`${import.meta.env.VITE_API_URL}/queries/${params.id}`)
-      },{
-        path:'/meRecommendations/:id',
-        element:(
-          <PrivateRoute>
-            <ViewDetails/>
-          </PrivateRoute>
-        ),
-        loader:({params})=> fetch(`${import.meta.env.VITE_API_URL}/meRecommendations/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/queries/${params.id}`),
       },
       {
-        path:'/myQueries/:id',
-        element:(
+        path: "/meRecommendations/:id",
+        element: (
           <PrivateRoute>
-            <QueryDetails/>
+            <ViewDetails />
           </PrivateRoute>
         ),
-        loader:({params})=> fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`)
-      },{
-        path:'/myQueries/update/:id',
-        element:<PrivateRoute>
-          <UpdateData>
-
-          </UpdateData>
-        </PrivateRoute>,
-        loader:({params})=> fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`)
-      },{
-        path:'/myQueries/delete/:id',
-        
-      }
+        loader: ({ params }) =>
+          fetch(
+            `${import.meta.env.VITE_API_URL}/meRecommendations/${params.id}`
+          ),
+      },
+      {
+        path: "/myQueries/:id",
+        element: (
+          <PrivateRoute>
+            <QueryDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`),
+      },
+      {
+        path: "/myQueries/update/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateData></UpdateData>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`),
+      },
+      {
+        path: "/recommendations/delete/:id",
+        deleteHandler: ({ params }) => {
+          const queryId = params.id;
+          fetch(`${import.meta.env.VITE_API_URL}/myQueries/delete/${queryId}`, {
+            method: "DELETE",
+          })
+            .then((response) => {
+              if (response.ok) {
+                console.log("Query deleted successfully");
+              } else {
+                console.error("Failed to delete query");
+              }
+            })
+            .catch((error) => {
+              console.error("Error deleting query:", error);
+            });
+        },
+      },
+      {
+        path: "/myRecommendations/:id",
+        element: (
+          <PrivateRoute>
+            <ViewDetails />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`${import.meta.env.VITE_API_URL}/myQueries/${params.id}`),
+      },
+      {
+        path: "/allRecommendations/:id",
+        element: (
+          <PrivateRoute>
+            <AllRecomendation></AllRecomendation>
+          </PrivateRoute>
+        ),
+        loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/allRecommendations/${params.id}`)
+       
+      },
     ],
   },
 ]);

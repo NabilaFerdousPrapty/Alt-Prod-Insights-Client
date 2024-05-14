@@ -5,7 +5,8 @@ import { useLoaderData } from 'react-router-dom';
 const ViewDetails = () =>{ const { theme } = useThemeToggle();
 let bgColor, textColor;
 const query = useLoaderData() || {};
-console.log();
+
+console.log(  query);
 const {
     QueryTitle,
 productName ,

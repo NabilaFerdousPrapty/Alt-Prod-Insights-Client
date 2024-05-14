@@ -64,7 +64,6 @@ const AddRecomendation = ({ query, updateRecommendationCount }) => {
 
       if (response.ok) {
         console.log("Recommendation added successfully");
-
         // Update query document with incremented recommendationCount using $inc
         const updateResponse = await fetch(`${import.meta.env.VITE_API_URL}/allQueries/${_id}`, {
           method: "PATCH",
