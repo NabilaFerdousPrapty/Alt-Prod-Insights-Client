@@ -14,10 +14,11 @@ const CTA = () => {
             Download our free mobile app
           </h2>
 
-          <p className="block max-w-2xl mt-4 ">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut corporis esse dolorum, illum, consectetur earum provident alias dolore omnis quis tempore voluptatum excepturi ea numquam? Aperiam fugiat consequuntur nostrum odio. </p>
+          <p className="block max-w-2xl mt-4 ">You don't need to be at your desk to do your best work. Get all the benefits of our mobile app right on your phone.So let's get started and let's not keep us limited to a single product and let's explore the world of products.
+             </p>
 
           <div className="mt-6 sm:-mx-2">
-            <a href="#" className="inline-flex items-center justify-center w-full px-4 text-sm py-2.5 overflow-hidden text-white transition-colors duration-300 bg-gray-900 rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+            <a  className="inline-flex items-center justify-center w-full px-4 text-sm py-2.5 overflow-hidden text-white transition-colors duration-300 bg-gray-900 rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
               <svg className="w-5 h-5 mx-2 fill-current" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" xmlSpace="preserve">
                 <g>
                   <g>

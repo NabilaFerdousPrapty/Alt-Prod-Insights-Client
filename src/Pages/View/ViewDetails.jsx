@@ -35,8 +35,10 @@ return (
       <div className="container grid gap-6 mx-auto text-center lg:grid-cols-2 xl:grid-cols-5">
         <div className="w-full px-6 py-10 rounded-md sm:px-12 md:px-16 xl:col-span-2 bg-gray-50">
         
-          <h1 className="text-5xl font-extrabold text-gray-900">
-            {QueryTitle}
+          <h1 className="lg:text-4xl md:text-2xl text-lg font-extrabold text-gray-900 my-2">
+           <span className='text-purple-400'>
+            Product Name:
+            </span> {QueryTitle}
           </h1>
           <p>
             <span className="font-medium text-gray-900 text-xl">
@@ -52,7 +54,7 @@ return (
           </p>
             <p>
             <span className="font-medium text-gray-900 text-xl">
-             Posted By   User Name:
+             Posted By User Name:
             </span>
             {userName}
             </p>
@@ -79,15 +81,15 @@ return (
           </p>
           <div>
             <div className="flex items-center justify-center space-x-4 bg-purple-200 rounded-lg py-5">
-              <img
+              {/* <img
                 src={productImageUrl}
                 alt
                 className="object-cover w-12 h-12 rounded-full shadow bg-gray-500"
-              />
+              /> */}
               <div>
                 
                 <p>
-                  on {CurrentTime_Stamp}
+                Recommended on {CurrentTime_Stamp}
                 </p>
               </div>
             </div>
