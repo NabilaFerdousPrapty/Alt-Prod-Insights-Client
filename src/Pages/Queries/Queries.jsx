@@ -7,10 +7,10 @@ const Queries = () => {
   const queries = useLoaderData();
   const { theme } = useThemeToggle();
   const [gridCols, setGridCols] = useState(3);
+  const [searchText, setSearchText] = useState("");
   let bgColor, textColor;
 
   const handleLayoutChange = (cols) => {
-    // console.log("New grid columns:", cols);
     setGridCols(cols);
   };
 
@@ -22,6 +22,10 @@ const Queries = () => {
     textColor = "text-black";
   }
 
+  const filteredQueries = queries.filter(query =>
+    query.productName.toLowerCase().replace(/\s+/g, ' ').trim().includes(searchText.toLowerCase().replace(/\s+/g, ' ').trim())
+  );
+  
   // console.log(gridCols);
   return (
     <div className="my-6 ">
@@ -69,17 +73,17 @@ const Queries = () => {
                 </p>
 
                 <div className="flex flex-col mt-6 space-y-3 lg:space-y-0 lg:flex-row">
-                  <input
-                    name="title"
-                    id="title"
-                    type="text"
-                    className="px-4 py-2  border rounded-md  dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
-                    placeholder="Enter product name"
-                  />
+                <input
+        name="title"
+        id="title"
+        type="text"
+        className="px-4 py-2  border rounded-md  dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
+        placeholder="Enter product name"
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+      />
 
-                  <button className="w-full px-5 py-2 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-lg lg:w-auto lg:mx-4 hover:bg-blue-500 focus:outline-none focus:bg-blue-500">
-                    Search
-                  </button>
+                 
                 </div>
               </div>
             </div>
@@ -109,7 +113,7 @@ const Queries = () => {
         </button>
       </div>
       <div className={`grid lg:grid-cols-${gridCols} gap-4 mt-8 mb-5 w-full`}>
-        {queries.map((query) => (
+        {filteredQueries.map((query) => (
           <AllQueryCard key={query._id} query={query} />
         ))}
       </div>
