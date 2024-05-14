@@ -55,13 +55,8 @@ const AllQueryCard = ({ query }) => {
             {buyingReasonDetails.slice(0, 100)}.....
           </p>
         </div>
-        <div className="flex flex-wrap justify-between ">
-          <button
-            
-            className={`p-2 ${buttonBgColor} ${buttonTextColor}   text-sm bg-slate-500 border rounded-lg border-gray-800`}
-          >
-            Give Recommendation
-          </button>
+        <div className="flex  justify-center items-center">
+         
           <Link
             to={`/queries/${query._id}`}
            

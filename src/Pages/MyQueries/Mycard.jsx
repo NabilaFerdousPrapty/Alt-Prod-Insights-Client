@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 const Mycard = ({ anyQueries }) => {
     const {_id,productName,currentDate,currentTime,productImageUrl,productBrand,queryTitle,buyingReasonDetails}=anyQueries;
     const [deleteing,setDeleteing]=useState(false);
+    const [cards,setCards]=useState(anyQueries|| []);
     const handleDelete= async (id)=>{
         Swal.fire({
             title: 'Are you sure?',
@@ -30,6 +31,9 @@ const Mycard = ({ anyQueries }) => {
                           )
                           
                     }
+                    const remaining=(prevCards => prevCards.filter(card => card._id !== id));
+                    
+                    setCards(remaining);
                     setDeleteing(false);
                 }).catch(error=>{
                     console.log(error);

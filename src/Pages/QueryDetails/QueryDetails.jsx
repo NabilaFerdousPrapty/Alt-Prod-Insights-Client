@@ -7,7 +7,7 @@ const QueryDetails = () => {
   const { theme } = useThemeToggle();
   let bgColor, textColor;
   const query = useLoaderData() || {};
-  
+  console.log();
   const {
     productName,
     productBrand,
@@ -21,6 +21,7 @@ const QueryDetails = () => {
     currentDate,
     currentTime,
   } = query;
+  
   if (theme === "sunset") {
     bgColor = "bg-purple-200";
     textColor = "text-purple-700";

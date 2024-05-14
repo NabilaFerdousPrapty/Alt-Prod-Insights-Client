@@ -13,6 +13,7 @@ import AddQueries from "../Pages/AddQueries/AddQueries";
 import QueryDetails from "../Pages/QueryDetails/QueryDetails";
 import AddRecomendation from "../Pages/AddRecomendation/AddRecomendation";
 import UpdateData from "../Pages/Update/UpdateData";
+import ViewDetails from "../Pages/View/ViewDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -78,6 +79,15 @@ export const router = createBrowserRouter([
         ),
         loader:({params})=> fetch(`${import.meta.env.VITE_API_URL}/queries/${params.id}`)
       },{
+        path:'/meRecommendations/:id',
+        element:(
+          <PrivateRoute>
+            <ViewDetails/>
+          </PrivateRoute>
+        ),
+        loader:({params})=> fetch(`${import.meta.env.VITE_API_URL}/meRecommendations/${params.id}`)
+      },
+      {
         path:'/myQueries/:id',
         element:(
           <PrivateRoute>
