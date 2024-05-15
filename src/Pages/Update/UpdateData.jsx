@@ -36,7 +36,7 @@ const UpdateData = () => {
           if (data. modifiedCount>0) {
             Swal.fire({
               title: "Congratulations!",
-              text: "Your tourist spot has been Updated successfully!",
+              text: "Your  query has been Updated successfully!",
               icon: "success",
               confirmButtonText: "Cool",
             });
@@ -45,7 +45,7 @@ const UpdateData = () => {
           } else {
             Swal.fire({
               title: "OOPS!",
-              text: "Your tourist spot has not been updated",
+              text: "Your query spot has not been updated",
               icon: "Error",
               confirmButtonText: "Cool",
             });
