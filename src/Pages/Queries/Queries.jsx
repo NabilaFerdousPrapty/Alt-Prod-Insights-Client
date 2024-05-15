@@ -2,6 +2,9 @@ import { useLoaderData } from "react-router-dom";
 import AllQueryCard from "./AllQueryCard";
 import { useState } from "react";
 import useThemeToggle from "../../hooks/UseThemeToogle/UseThemeTooogle";
+import { MdGridOff } from "react-icons/md";
+import { CiGrid31 } from "react-icons/ci";
+import { CiGrid2V } from "react-icons/ci";
 import logo from "../../assets/AltProdInsightsLogo.png";
 const Queries = () => {
   const queries = useLoaderData();
@@ -103,13 +106,13 @@ const Queries = () => {
       </div>
       <div className="lg:flex justify-between items-center flex-col md:flex-row mt-5 hidden">
         <button className="btn" onClick={() => handleLayoutChange(1)}>
-          1 Column Layout
+        <MdGridOff />
         </button>
         <button className="btn" onClick={() => handleLayoutChange(2)}>
-          2 Column Layout
+        <CiGrid2V />
         </button>
         <button className="btn" onClick={() => handleLayoutChange(3)}>
-          3 Column Layout
+        <CiGrid31 />
         </button>
       </div>
       <div className={`grid lg:grid-cols-${gridCols} gap-4 mt-8 mb-5 w-full`}>

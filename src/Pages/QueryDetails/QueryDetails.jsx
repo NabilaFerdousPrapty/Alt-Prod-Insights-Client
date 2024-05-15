@@ -3,11 +3,12 @@ import useThemeToggle from "../../hooks/UseThemeToogle/UseThemeTooogle";
 import AddRecomendation from "../AddRecomendation/AddRecomendation";
 import { useEffect, useState } from "react";
 
+
 const QueryDetails = () => {
   const { theme } = useThemeToggle();
   let bgColor, textColor;
   const query = useLoaderData() || {};
-  console.log();
+  
   const {
     _id,
     productName,
@@ -114,11 +115,11 @@ const QueryDetails = () => {
                   Recommend
                 </button>
               </div>
-              <div className="btn bg-purple-800 text-white my-3">
-                <Link to={`/allRecommendations/${_id}`}>
+              <Link to={`/allRecommendations/${_id}`} className="btn bg-purple-800 text-white my-3">
+                <button >
                   Show All Recommendations
-                </Link>
-              </div>
+                </button>
+              </Link>
             </div>
             <img
               src={productImageUrl}
@@ -128,6 +129,7 @@ const QueryDetails = () => {
           </div>
         </section>
       </div>
+     
       <div>
         {!hidden && (
           <AddRecomendation

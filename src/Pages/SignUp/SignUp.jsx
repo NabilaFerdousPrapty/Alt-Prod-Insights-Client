@@ -30,7 +30,7 @@ const SignUp = () => {
         }
         try{
             const result=await createUser(email,password);
-            console.log(result);
+            // console.log(result);
             await updateUserProfile(userName,photoUrl);
             //optimistic update
 

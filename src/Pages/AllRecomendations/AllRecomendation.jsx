@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 const AllRecomendation = () => {
   const allQueries = useLoaderData() || {};
 
-  console.log(allQueries);
+  // console.log(allQueries);
   const {
     CurrentTime_Stamp,
     QueryTitle,
@@ -130,8 +130,12 @@ const AllRecomendation = () => {
             </div>
           ))
         ) : (
-          <div className="text-center text-2xl text-red-500">
-            No Recommendations Found
+          <div className="text-center lg:text-4xl text-2xl text-red-500 flex justify-center items-center ">
+           <p>
+           No Recommendations Found For Now !
+            Come back later
+           </p>
+
           </div>
         )}
       </div>

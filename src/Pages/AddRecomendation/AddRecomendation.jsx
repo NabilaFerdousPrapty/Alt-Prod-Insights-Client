@@ -63,7 +63,7 @@ const AddRecomendation = ({ query, updateRecommendationCount }) => {
       });
 
       if (response.ok) {
-        console.log("Recommendation added successfully");
+        // console.log("Recommendation added successfully");
         // Update query document with incremented recommendationCount using $inc
         const updateResponse = await fetch(`${import.meta.env.VITE_API_URL}/allQueries/${_id}`, {
           method: "PATCH",
@@ -77,7 +77,7 @@ const AddRecomendation = ({ query, updateRecommendationCount }) => {
 
 
         if (updateResponse.ok) {
-          console.log("Recommendation count updated successfully");
+          // console.log("Recommendation count updated successfully");
           updateRecommendationCount(recommendationCount + 1);
           Swal.fire({
             icon: "success",

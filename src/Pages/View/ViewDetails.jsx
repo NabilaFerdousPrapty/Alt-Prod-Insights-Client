@@ -6,7 +6,7 @@ const ViewDetails = () =>{ const { theme } = useThemeToggle();
 let bgColor, textColor;
 const query = useLoaderData() || {};
 
-console.log(  query);
+// console.log(  query);
 const {
     QueryTitle,
 productName ,
@@ -27,7 +27,7 @@ if (theme === "sunset") {
   textColor = "text-black";
 }
 
-console.log(query);
+// console.log(query);
 
 return (
  <div>

@@ -133,9 +133,9 @@ export const router = createBrowserRouter([
         )
             .then((response) => {
               if (response.ok) {
-                console.log("Query deleted successfully");
+                // console.log("Query deleted successfully");
               } else {
-                console.error("Failed to delete query");
+                // console.error("Failed to delete query");
               }
             })
             .catch((error) => {

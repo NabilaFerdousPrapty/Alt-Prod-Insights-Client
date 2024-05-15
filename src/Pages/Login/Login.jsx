@@ -19,12 +19,12 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      console.log(data);
+      // console.log(data);
       toast.success("Signed in with Google successfully");
       navigate(location?.state ? location.state : "/");
       //get access token
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error.message);
     }
   };
@@ -38,11 +38,11 @@ const Login = () => {
         withCredentials: true,
       }
     );
-    console.log(data);
+    // console.log(data);
       toast.success("Signed in with Github successfully");
       navigate(location?.state ? location.state : "/");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error.message);
     }
   };
@@ -51,7 +51,7 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log({ email, password });
+    // console.log({ email, password });
     try {
       const result = await signIn(email, password);
       const { data } = await axios.post(
@@ -61,14 +61,14 @@ const Login = () => {
           withCredentials: true,
         }
       );
-      console.log(data);
-      console.log(result);
+      // console.log(data);
+      // console.log(result);
       navigate("/");
       form.reset();
       toast.success("Signed in with email successfully");
       navigate(location?.state ? location.state : "/");
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error(error.message);
       form.reset();
     }

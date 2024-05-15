@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
       withCredentials:true,
     
     });
-    console.log(data);
+    // console.log(data);
     return signOut(auth);
   };
 

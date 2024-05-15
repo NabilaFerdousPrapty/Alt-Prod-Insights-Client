@@ -10,7 +10,7 @@ const MyRecommendations = () => {
     fetch(`${import.meta.env.VITE_API_URL}/recommendations/${user?.email}`,{credentials:'include'})
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setMyRecommendations(data);
       });
   }
@@ -33,7 +33,7 @@ const MyRecommendations = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.deletedCount > 0) {
               
              

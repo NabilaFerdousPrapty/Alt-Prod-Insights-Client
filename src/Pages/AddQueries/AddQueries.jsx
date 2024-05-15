@@ -13,14 +13,14 @@ const AddQueries = () => {
     const productImageUrl = form.productImageUrl.value;
     const queryTitle = form.queryTitle.value;
     const buyingReasonDetails = form.buyingReasonDetails.value;
-    console.log(productName, productBrand, productImageUrl, queryTitle, buyingReasonDetails);
+    // console.log(productName, productBrand, productImageUrl, queryTitle, buyingReasonDetails);
     const email=user.email;
     const name=user.displayName;
     const photo=user.photoURL;
     let  recommendationCount=0;
     const Timestamp = Date.now(); // Get current timestamp in milliseconds
 const DateStamp = new Date(Timestamp); // Convert timestamp to Date object
-console.log(DateStamp);
+// console.log(DateStamp);
 // Extract date components
 const year = DateStamp.getFullYear();
 const month = DateStamp.getMonth() + 1; // Month is zero-based, so we add 1
@@ -37,8 +37,8 @@ const timeString = `${hours}:${minutes}:${seconds}`;
 
 const currentDate = dateString;
 const currentTime = timeString;
-console.log("Date:", dateString);
-console.log("Time:", timeString);
+// console.log("Date:", dateString);
+// console.log("Time:", timeString);
 
 
     const newQuery = {
@@ -54,7 +54,7 @@ console.log("Time:", timeString);
         currentDate,
         currentTime
     };
-    console.log(newQuery);
+    // console.log(newQuery);
     fetch(`${import.meta.env.VITE_API_URL}/queries`,{
         method: 'POST',
         headers: {
@@ -64,7 +64,7 @@ console.log("Time:", timeString);
         body: JSON.stringify(newQuery)
 
     }).then(response => response.json()).then(data => {
-        console.log(data);
+        // console.log(data);
        if (data.insertedId) {
         Swal.fire({
           icon: 'success',
@@ -77,7 +77,7 @@ confirmButtonText: 'OK',
        }
         form.reset();
     }).catch(error => {
-        console.log(error);
+        // console.log(error);
         Swal.fire({
             icon: 'error',
             title: 'Failed to Add Query',
