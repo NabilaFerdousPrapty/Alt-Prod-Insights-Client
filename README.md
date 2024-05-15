@@ -51,20 +51,24 @@ AltProdInsights is a web application designed to provide users with information 
 - React swiper slider
 - React icons
 ## Folder Structure
-```
+The folder structure for this project is as follows:
 
-```
+- `src`: This folder contains all the source code files for the React application.
 
-## Installation and Setup
-1. Clone the repository.
-2. Install dependencies using `npm install`.
-3. Set up environment variables for Firebase and MongoDB credentials.
-4. Run the application using `npm start`.
+    - `components`: This folder contains reusable React components used throughout the application.
+    - `pages`: This folder contains the main pages of the application.
+    - `styles`: This folder contains CSS or SCSS files for styling the components and pages.
+    - `utils`: This folder contains utility functions or helper files.
+- `public`: This folder contains static assets such as images, fonts, or other files that are directly served by the application.
+- `tests`: This folder contains test files for testing the application.
+- `config`: This folder contains configuration files for the application.
+- `build`: This folder is generated when the application is built for production.
+- `node_modules`: This folder contains all the dependencies installed by npm.
 
-## Contributing
-Contributions are welcome! Feel free to open issues or pull requests for any improvements or new features.
+- `package.json`: This file contains metadata and configuration for the project, including the list of dependencies.
+- `README.md`: This file contains the documentation and instructions for setting up and running the project.
 
-## License
+- `LICENSE`: This file contains the license information for the project.
 This project is licensed under the [MIT License](LICENSE).
 
 ## About the Author
