@@ -1,11 +1,4 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # AltProdInsights
 ## Live Link:https://altprodinsights.web.app/
 #### Alternative Product Information System
@@ -31,18 +24,9 @@ AltProdInsights is a web application designed to provide users with information 
  - Users can Add recommendations also for certain products
  - Users can delete their recommendations from
  - Users can Modify/Delete their comments also
-- Responsive Design
-- Private Routes
-- Environment Variables
-- Navbar with Login/Register functionality
 - Authentication with email/password and social login options
-- Registration and Login pages
-- Toast/Sweet Alert for notifications
 - Homepage with sections such as Banner/Slider, Tourists Spots, Countries, and more
 - Add Tourists Spot, My List, Update, and Delete functionalities
-- Footer with essential information and social media links
-- 404 Page for handling invalid URLs
-- Loading Spinner for data loading state
 - Dark/Light Theme Toggle
 
 
